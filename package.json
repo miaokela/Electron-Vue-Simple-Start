@@ -1,0 +1,37 @@
+{
+  "name": "show-me",
+  "version": "1.0.0",
+  "main": "dist/electron/main.js",
+  "license": "MIT",
+  "build": {
+    "files": [
+      "dist/electron/**/*",
+      "dist/renderer/**/*",
+      "package.json"
+    ],
+    "asar": true
+  },
+  "scripts": {
+    "dev:renderer": "vite",
+    "build:renderer": "vite build",
+    "build:electron": "tsc -p electron/tsconfig.json",
+    "dev": "npx cross-env NODE_ENV=development concurrently \"yarn dev:renderer\" \"wait-on http://localhost:3001 && electron .\"",
+    "build": "npx cross-env NODE_ENV=production yarn build:renderer && yarn build:electron && electron-builder"
+  },
+  "dependencies": {
+    "electron-log": "^5.4.2",
+    "vue": "3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.1",
+    "concurrently": "^9.2.0",
+    "electron": "^37.2.5",
+    "electron-builder": "^26.0.12",
+    "typescript": "^5.9.2",
+    "vite": "^7.0.6",
+    "wait-on": "^8.0.4"
+  },
+  "volta": {
+    "node": "22.12.0"
+  }
+}
