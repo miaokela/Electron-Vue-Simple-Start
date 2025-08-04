@@ -1,37 +1,50 @@
 <template>
   <div class="container">
-    <h1>Electron + Vue 3 + Vite 脚手架</h1>
-    <button @click="onPing">向主进程发送 Ping</button>
-    <p>{{ reply }}</p>
+    <video ref="videoRef" autoplay muted playsinline></video>
   </div>
 </template>
 
 <script lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 export default {
   setup() {
-    const reply = ref('')
+    const videoRef = ref<HTMLVideoElement | null>(null)
 
-    const onPing = async () => {
-      // 调用 preload 暴露的 API
-      // @ts-ignore
-      reply.value = await window.electronAPI.ping()
-    }
+    onMounted(async () => {
+      if (!navigator.mediaDevices || !videoRef.value) return
 
-    return { reply, onPing }
+      try {
+        // 请求摄像头
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true })
+        videoRef.value.srcObject = stream
+      } catch (err) {
+        console.error('无法访问摄像头：', err)
+      }
+    })
+
+    return { videoRef }
   }
 }
 </script>
 
 <style>
 .container {
-  padding: 2rem;
-  text-align: center;
+  width: 300px;
+  height: 300px;
+  margin: 2rem auto;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-button {
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
+
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  /* 去掉默认黑边 */
+  background: #000;
 }
 </style>
-

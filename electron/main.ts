@@ -15,7 +15,7 @@ function createWindow() {
       devTools: true
     }
   })
-  // console.log(`当前环境${process.env.NODE_ENV}`)
+  console.log(`当前环境${process.env.NODE_ENV}`)
   if (process.env.NODE_ENV === 'development') {
     mainWindow.loadURL('http://localhost:3001')
     mainWindow.webContents.openDevTools()
