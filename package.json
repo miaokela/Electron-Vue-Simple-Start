@@ -9,16 +9,7 @@
       "dist/renderer/**/*",
       "package.json"
     ],
-    "asar": true,
-    "mac": {
-      "hardenedRuntime": true,
-      "entitlements": "entitlements.mac.plist",
-      "entitlementsInherit": "entitlements.mac.plist",
-      "extendInfo": {
-        "NSCameraUsageDescription": "请允许此应用访问摄像头，用于展示视频画面",
-        "NSMicrophoneUsageDescription": "请允许此应用访问麦克风，用于采集音频（可选）"
-      }
-    }
+    "asar": true
   },
   "scripts": {
     "dev:renderer": "vite",

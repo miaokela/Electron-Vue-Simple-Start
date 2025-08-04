@@ -1,31 +1,10 @@
 <template>
   <div class="container">
-    <video ref="videoRef" autoplay muted playsinline></video>
+    Welcome!
   </div>
 </template>
 
 <script lang="ts">
-import { ref, onMounted } from 'vue'
-
-export default {
-  setup() {
-    const videoRef = ref<HTMLVideoElement | null>(null)
-
-    onMounted(async () => {
-      if (!navigator.mediaDevices || !videoRef.value) return
-
-      try {
-        // 请求摄像头
-        const stream = await navigator.mediaDevices.getUserMedia({ video: true })
-        videoRef.value.srcObject = stream
-      } catch (err) {
-        console.error('无法访问摄像头：', err)
-      }
-    })
-
-    return { videoRef }
-  }
-}
 </script>
 
 <style>
