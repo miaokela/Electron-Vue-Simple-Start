@@ -7,7 +7,8 @@
 <script lang="ts">
 </script>
 
-<style>
+<style lang="scss">
+@import url('./index.css');
 .container {
   width: 300px;
   height: 300px;
