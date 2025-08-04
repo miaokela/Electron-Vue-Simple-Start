@@ -15,7 +15,7 @@
     "dev:renderer": "vite",
     "build:renderer": "vite build",
     "build:electron": "tsc -p electron/tsconfig.json",
-    "dev": "npx cross-env NODE_ENV=development concurrently \"yarn dev:renderer\" \"wait-on http://localhost:3001 && electron .\"",
+    "dev": "npx cross-env NODE_ENV=development concurrently \"yarn build:electron && yarn dev:renderer\" \"wait-on http://localhost:3001 && electron .\"",
     "build": "npx cross-env NODE_ENV=production yarn build:renderer && yarn build:electron && electron-builder"
   },
   "dependencies": {
@@ -27,6 +27,7 @@
     "concurrently": "^9.2.0",
     "electron": "^37.2.5",
     "electron-builder": "^26.0.12",
+    "ts-node": "^10.9.2",
     "typescript": "^5.9.2",
     "vite": "^7.0.6",
     "wait-on": "^8.0.4"
