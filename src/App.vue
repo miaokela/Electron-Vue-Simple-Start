@@ -1,5 +1,5 @@
 <template>
-  <div class="text-red-300">
+  <div class="text-red-300 bg-green-300">
     Welcome!
   </div>
 </template>

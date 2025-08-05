@@ -2,14 +2,12 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import path from "path";
 import tailwindcss from "@tailwindcss/vite";
+import UnoCSS from 'unocss/vite'
 
 export default defineConfig({
   root: "src",
   base: "./",
-  plugins: [vue(), tailwindcss()],
-  css: {
-    postcss: '../postcss.config.cjs'  // 相对于 src 的路径
-  },
+  plugins: [vue(), tailwindcss(), UnoCSS()],
   resolve: {
     alias: { "@": path.resolve(__dirname, "src") },
   },
